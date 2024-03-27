@@ -1,5 +1,6 @@
 import BgPic from '../assets/images/testpage.png'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const gad7Ques = [
     'Feeling nervous, anxious, or on edge',
@@ -58,12 +59,16 @@ const Form = () => {
         q6: 0,
         q7: 0
     })
+    const nevigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
+        let result = 0
         Object.keys(formData).forEach(function (key, index) {
             formData[key] = Number(formData[key]);
+            result += formData[key]
         });
         console.log(formData);
+        nevigate(`AnxietyResult/${result}`)
     }
     return (
         <form className="flex flex-col justify-center items-center m-4 rounded-md p-4 gap-4" onSubmit={handleSubmit}>

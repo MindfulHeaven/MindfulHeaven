@@ -1,21 +1,23 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Picture from '../assets/images/login-signup.png'
+import { useNavigate } from 'react-router-dom'
 
 function SignUp() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
-    const [usernameError, setUsernameError] = useState('')
-    const [emailError, setEmailError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
+    const nevigate = useNavigate();
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("")
+    const [usernameError, setUsernameError] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [passwordError, setPasswordError] = useState("")
 
-    const onButtonClick = () => {
-        setUsernameError('')
-        setEmailError('')
-        setPasswordError('')
+    const onButtonClick = async () => {
+        setUsernameError("")
+        setEmailError("")
+        setPasswordError("")
 
-        if(username === ''){
+        if (username === "") {
             setUsernameError('Please enter name')
             return
         }
@@ -30,10 +32,37 @@ function SignUp() {
             return
         }
 
-        // if all fields entered correctly then backend signup procedure as below
+        signup()
     }
 
-    return ( 
+    const signup = async () => {
+        try{
+            const response = await fetch(`http://localhost:1818/signup`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: `${username}`,
+                    email: `${email}`,
+                    password: `${password}`
+                })
+            })
+            console.log(response)
+            if(response.status === 201){
+                nevigate('/login')
+            }
+            else{
+                alert('Something went wrong try again!')
+            }
+        }
+        catch(error){
+            console.log(error)
+            alert('Something went wrong try again!')
+        }
+    }
+
+    return (
         <div id="login" className="flex box-border">
             <div className='flex justify-center items-center m-auto'>
                 <div className='flex flex-col justify-center border-2 h-[30rem] rounded-lg px-14 gap-8 shadow-md'>
@@ -48,6 +77,7 @@ function SignUp() {
                             onChange={(e) => setUsername(e.target.value)}
                             className='border-2 rounded-md px-4 py-1 w-60'
                             placeholder='Enter your name'
+                            required
                         />
                         <label className="text-xs text-red-500 pl-2">{usernameError}</label>
                     </div>
@@ -59,6 +89,7 @@ function SignUp() {
                             onChange={(e) => setEmail(e.target.value)}
                             className='border-2 rounded-md px-4 py-1 w-60'
                             placeholder='Enter your email'
+                            required
                         />
                         <label className="text-xs text-red-500 pl-2">{emailError}</label>
                     </div>
@@ -70,6 +101,7 @@ function SignUp() {
                             onChange={(e) => setPassword(e.target.value)}
                             className='border-2 rounded-md px-4 py-1 w-60'
                             placeholder='Enter your password'
+                            required
                         />
                         <label className="text-xs text-red-500 pl-2">{passwordError}</label>
                     </div>
