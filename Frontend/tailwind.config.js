@@ -12,7 +12,9 @@ export default {
         jaldi: ["Jaldi", "sans-serif"]
       },
       colors: {
-        green: 'rgba(48, 80, 65, 1)' 
+        green: 'rgba(48, 80, 65, 1)',
+        resultGreen: 'rgba(76, 175, 80, 1)',
+        resultRed: 'rgba(255, 99, 132, 1)'
       }
     },
   },

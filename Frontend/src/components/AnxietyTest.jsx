@@ -17,7 +17,7 @@ function AnxietyTest() {
                     </div>
                     <Link 
                         className='rounded-2xl px-4 py-1 bg-[#efb399] hover:bg-[#da9273]'
-                        to='phq9'
+                        to='gad7'
                     >
                         Continue
                     </Link>

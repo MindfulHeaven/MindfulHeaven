@@ -15,6 +15,11 @@ import SignUp from './components/SignUp.jsx'
 import DepressionTestPhq9 from './components/DepressionTestPhq9.jsx'
 import EmergencyResources from './components/EmergencyResources.jsx'
 import AnxietyTestGad7 from './components/AnxietyTestGad7.jsx'
+import DepressionResult from './components/DepressionResult.jsx'
+import AnxietyResult from './components/AnxietyResult.jsx'
+import StressTestPss from './components/StressTestPss.jsx'
+import StressResult from './components/StressResult.jsx'
+import { AuthProvider } from './authContext.jsx'
 
 const appRouter = createBrowserRouter([
   {
@@ -39,8 +44,18 @@ const appRouter = createBrowserRouter([
             element: <AnxietyTest />
           },
           {
-            path: 'phq9',
-            element: <AnxietyTestGad7 />
+            path: 'gad7',
+            // element: <AnxietyTestGad7 />
+            children: [
+              {
+                path: '',
+                element: <AnxietyTestGad7 />
+              },
+              {
+                path: 'AnxietyResult/:score',
+                element: <AnxietyResult />
+              }
+            ]
           }
         ]
       },
@@ -54,13 +69,41 @@ const appRouter = createBrowserRouter([
           },
           {
             path: 'phq9',
-            element: <DepressionTestPhq9 />
+            children: [
+              {
+                path: 'DepressionResult/:score',
+                element: <DepressionResult />
+              },
+              {
+                path: '',
+                element: <DepressionTestPhq9 />
+              }
+            ]
           }
         ]
       },
       {
         path: '/stress-test',
-        element: <StressTest />
+        // element: <DepressionTest />,
+        children: [
+          {
+            path: '',
+            element: <StressTest />
+          },
+          {
+            path: 'pss10',
+            children: [
+              {
+                path: 'StressResult/:score',
+                element: <StressResult />
+              },
+              {
+                path: '',
+                element: <StressTestPss />
+              }
+            ]
+          }
+        ]
       },
       {
         path: '/therapy',
@@ -73,17 +116,21 @@ const appRouter = createBrowserRouter([
     ]
   },
   {
-    path: '/login',
-    element: <Login />
+    path: 'login',
+    element: <Login />,
+    errorElement: <Error />
   },
   {
     path: '/signup',
-    element: <SignUp />
+    element: <SignUp />,
+    errorElement: <Error />
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={appRouter} />
+    <AuthProvider>
+      <RouterProvider router={appRouter} />
+    </AuthProvider>
   </React.StrictMode>,
 )

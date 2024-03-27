@@ -3,6 +3,7 @@ import DepressionPic from '../assets/images/depression.png'
 import StressPic from '../assets/images/stress.png'
 import SelfReliefPic from '../assets/images/self-relief.png'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const SelfAssessmentCard = ({ picture, cardName, linkTo, bgColor }) => {
     return (
@@ -29,7 +30,10 @@ const ReliefActivityCard = ({ picture, cardName, linkTo }) => {
 }
 
 function SelfAssessmentHome() {
+    const [scores, setScores] = useState({ depression: 0, anxiety: 0, stress: 0 })
+    const scoresObject = { scores, setScores }
     return (
+        // <FormScoreContext.Provider value={scoresObject}>
         <section id="self-assessment" className='mt-36'>
             <div className='text-3xl font-kavoon text-center w-full'>
                 <h1>Self Assessment</h1>
@@ -54,8 +58,9 @@ function SelfAssessmentHome() {
             <ReliefActivityCard
                 picture={SelfReliefPic}
                 cardName='Relief Activities'
-                linkTo='/relief-activities' />
+                linkTo='/awareness-portal' />
         </section>
+        // </FormScoreContext.Provider>
     )
 }
 
