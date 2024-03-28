@@ -11,10 +11,10 @@ function DepressionResult({ }) {
     function getBackgroundColors(score) {
         let backgroundColors;
         switch (true) {
-            case (score < 4):
+            case (score < 5):
                 backgroundColors = ['#0ac72c', 'rgba(243, 244, 244, 1)'];
                 break;
-            case (score >= 4 && score < 10):
+            case (score >= 5 && score < 10):
                 backgroundColors = ['#ffff10', 'rgba(243, 244, 244, 1)'];
                 break;
             case (score >= 10 && score < 15):
@@ -87,19 +87,19 @@ function DepressionResult({ }) {
                     </div>
                     <div className='flex flex-col justify-center items-center rounded-lg p-2 bg-[#ffff10]'>
                         <span>5-9</span>
-                        <span>Minimal Depression</span>
+                        <span>Mild Depression</span>
                     </div>
                     <div className='flex flex-col justify-center items-center rounded-lg p-2 bg-[#ff7519]'>
                         <span>10-14</span>
-                        <span>Minimal Depression</span>
+                        <span>Moderate Depression</span>
                     </div>
                     <div className='flex flex-col justify-center items-center rounded-lg p-2 bg-[#ff3911]'>
                         <span>15-19</span>
-                        <span>Minimal Depression</span>
+                        <span>MOderately Severe Depression</span>
                     </div>
                     <div className='flex flex-col justify-center items-center rounded-lg p-2 bg-[#ea0f0e]'>
                         <span>20-27</span>
-                        <span>Minimal Depression</span>
+                        <span>Severe Depression</span>
                     </div>
                 </div>
                 <div className='flex gap-4 my-4 text-lg'>

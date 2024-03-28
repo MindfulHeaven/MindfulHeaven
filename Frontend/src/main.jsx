@@ -20,6 +20,10 @@ import AnxietyResult from './components/AnxietyResult.jsx'
 import StressTestPss from './components/StressTestPss.jsx'
 import StressResult from './components/StressResult.jsx'
 import { AuthProvider } from './authContext.jsx'
+import ContactUs from './components/ContactUs.jsx'
+import AboutUs from './components/AboutUs.jsx'
+import SuggestTherapist from './components/SuggestTherapist.jsx'
+import ScheduleSession from './components/ScheduleSession.jsx'
 
 const appRouter = createBrowserRouter([
   {
@@ -107,11 +111,35 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/therapy',
-        element: <Therapy />
+        // element: <Therapy />,
+        children: [
+          {
+            path: ':category',
+            // element: <SuggestTherapist />,
+            children: [
+              {
+                path: '',
+                element: <SuggestTherapist />
+              },
+              {
+                path: ':therapistId',
+                element: <ScheduleSession />
+              }
+            ]
+          },
+        ]
       },
       {
         path: '/emergency-resources',
         element: <EmergencyResources />
+      },
+      {
+        path: '/aboutus',
+        element: <AboutUs />
+      },
+      {
+        path: '/contactus',
+        element: <ContactUs />
       }
     ]
   },
