@@ -26,17 +26,17 @@ function TherapyHome() {
                 <TherapyCard
                     picture={IndividualTherapyPic}
                     cardName='Individual'
-                    linkTo='/therapy'
+                    linkTo='/therapy/Individual'
                     bgColor='#e7e4f2' />
                 <TherapyCard
                     picture={TeenTherapyPic}
                     cardName='Teen'
-                    linkTo='/therapy'
+                    linkTo='/therapy/Teen'
                     bgColor='#f4edd9' />
                 <TherapyCard
                     picture={CoupleTherapyPic}
                     cardName='Couple'
-                    linkTo='/therapy'
+                    linkTo='/therapy/Couple'
                     bgColor='#e7e4f2' />
             </div>
         </section>

@@ -13,7 +13,7 @@ export default {
       },
       colors: {
         green: 'rgba(48, 80, 65, 1)',
-        resultGreen: 'rgba(76, 175, 80, 1)',
+        resultGreen: 'rgba(76, 175, 80, 0.7)',
         resultRed: 'rgba(255, 99, 132, 1)'
       }
     },
