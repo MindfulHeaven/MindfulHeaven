@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Picture from '../assets/images/banner.png'
 import { useState } from 'react'
+import { useAuthDispatch } from '../authContext'
+
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -8,7 +10,10 @@ function Login() {
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
 
-    const onButtonClick = () => {
+    const dispatch = useAuthDispatch()
+    const nevigate = useNavigate()
+
+    const onButtonClick = async () => {
         setEmailError('')
         setPasswordError('')
 
@@ -34,6 +39,39 @@ function Login() {
         }
 
         // if all fields entered correctly then backend login procedure as below
+        login()
+    }
+
+    const login = async () => {
+        try{
+            const response = await fetch(`http://localhost:1818/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: `${email}`,
+                    password: `${password}`
+                }),
+            })
+            // console.log(await response.json())
+            const responseData = await response.json()
+            if(responseData.user){
+                const token = responseData.user
+                dispatch({ type: 'LOGIN', payload: { token, email } })
+                localStorage.setItem('token', token)
+                localStorage.setItem('email', email)
+
+                nevigate('/')
+            }
+            else{
+                alert('Invalid Credentials')
+            }
+        }
+        catch(error){
+            console.log(error)
+            alert('Something went wrong Try again!')
+        }
     }
 
     return (

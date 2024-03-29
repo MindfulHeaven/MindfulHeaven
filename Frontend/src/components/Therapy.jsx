@@ -1,6 +1,8 @@
+import { Outlet } from "react-router-dom"
+
 function Therapy() {
     return ( 
-        <h1>Therapy</h1>
+        <Outlet />
     )
 }
 

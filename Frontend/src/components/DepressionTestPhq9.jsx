@@ -1,6 +1,7 @@
 import BgPic from '../assets/images/testpage.png'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { Outlet } from 'react-router-dom'
 
 const phq9Ques = [
     'Little interest or pleasure in doing things',
@@ -63,12 +64,20 @@ const Form = () => {
         q8: 0,
         q9: 0
     })
+    const nevigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
+        let result = 0
         Object.keys(formData).forEach(function (key, index) {
             formData[key] = Number(formData[key]);
+            result += formData[key]
         });
         console.log(formData);
+        console.log(result);
+        // console.log('Before');
+        // setScores((scores) =>  {depression: result})
+        // console.log('After');
+        nevigate(`DepressionResult/${result}`)
     }
     return (
         <form className="flex flex-col justify-center items-center m-4 rounded-md p-4 gap-4" onSubmit={handleSubmit}>
@@ -91,6 +100,7 @@ const Form = () => {
     )
 }
 
+
 function DepressionTestPhq9() {
     return (
         <div className="flex flex-col justify-center items-center m-4 rounded-md p-4 gap-4">
@@ -112,6 +122,7 @@ function DepressionTestPhq9() {
                 </div>
             </form> */}
             <Form />
+            <Outlet />
         </div >
     )
 }

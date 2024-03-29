@@ -5,7 +5,9 @@ const therapistSchema = new mongoose.Schema({
   category: String, 
   type: String, 
   address:String,
-  number:Number  
+  number:String,
+  email:String,
+  ratings:Number
 });
 
 const Therapist = mongoose.model('Therapist', therapistSchema);
