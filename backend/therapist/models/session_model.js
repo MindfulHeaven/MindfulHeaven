@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
+// const User = require("../../authentication/models/User")
 
 const sessionSchema = new mongoose.Schema({
- therapistId: { type: mongoose.Schema.Types.ObjectId, ref: 'Therapist' },
- startTime: { type: Date, required: true },
- endTime: { type: Date, required: true },
- // Additional fields as needed
+    startTime: { 
+        type: Date, 
+        required: true 
+    },
+    endTime: { 
+        type: Date, 
+        required: true 
+    },
 });
 
 const Session = mongoose.model('Session', sessionSchema);

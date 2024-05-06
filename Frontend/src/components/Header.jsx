@@ -1,19 +1,35 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../authContext'
 import { useAuthDispatch } from '../authContext'
+import { useEffect, useState } from 'react'
 
 function Header() {
     const { isAuthenticated } = useAuth();
     const dispatch = useAuthDispatch();
     const nevigate = useNavigate()
-    console.log(isAuthenticated)
-    const handleLogout = () => {
-        console.log("Logout function called")
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            nevigate('/login')
+        }
+    }, [isAuthenticated])
+
+    const handleLogout = async () => {
+        await fetch(`http://localhost:1818/logout`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application-json",
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                "user": localStorage.getItem('token')
+            })
+        })
         dispatch({ type: 'LOGOUT' });
-    
+
         localStorage.removeItem('token');
         localStorage.removeItem('email');
-    
+
         nevigate('/login');
     }
 
@@ -29,23 +45,30 @@ function Header() {
     }
 
     return (
-        <div id="header" className="flex justify-between p-6 bg-[#f7f7ef] box-border shadow-md sticky top-0 w-full z-10">
-            <div id="logo" className="font-extrabold text-2xl font-markoOne">
+        <div id="header" className="flex justify-between p-6 bg-[#f7f7ef] box-border shadow-md sticky top-0 w-full z-10 max-[864px]:flex-col max-[864px]:justify-center max-[864px]:items-center">
+            <div id="logo" className="font-extrabold text-2xl font-markoOne max-[433px]:text-xl">
                 <Link to='/' onClick={scrollToTop}>MindfulHeaven</Link>
             </div>
             {isAuthenticated ?
                 <>
-                    <div className="flex justify-between items-center gap-16 text-lg font-semibold">
+                    <div className="flex justify-between items-center gap-16 text-lg font-semibold max-[433px]:text-sm">
                         <Link to="/#self-assessment" onClick={() => scrollToView('self-assessment')} className='hover:text-slate-600'>Self Assessment</Link>
                         <Link to="/awareness-portal" onClick={scrollToTop} className='hover:text-slate-600'>Awareness Portal</Link>
-                        <Link to="/#therapy"  onClick={() => scrollToView('therapy')} className='hover:text-slate-600'>Therapy</Link>
+                        <Link to="/#therapy" onClick={() => scrollToView('therapy')} className='hover:text-slate-600'>Therapy</Link>
                     </div>
-                    <div className="px-6 rounded-full bg-[#efb399] hover:bg-[#e3a286] flex items-center">
-                        <button
-                            onClick={handleLogout}
-                        >
-                            Logout
-                        </button>
+                    <div className='flex gap-4 max-[433px]:text-sm'>
+                        <div className="px-6 rounded-full bg-[#efb399] hover:bg-[#e3a286] flex items-center">
+                            <Link to='/userprofile'>
+                                Profile
+                            </Link>
+                        </div>
+                        <div className="px-6 rounded-full bg-[#efb399] hover:bg-[#e3a286] flex items-center">
+                            <button
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </button>
+                        </div>
                     </div>
                 </> :
                 <>
@@ -54,10 +77,17 @@ function Header() {
                         <Link to="/awareness-portal" onClick={scrollToTop} className='hover:text-slate-600'>Awareness Portal</Link>
                         <Link to="#therapy" onClick={() => scrollToView('therapy')} className='hover:text-slate-600'>Therapy</Link>
                     </div>
-                    <div className="px-6 rounded-full bg-[#efb399] hover:bg-[#e3a286] flex items-center">
-                        <Link to='/login'>
-                            Login
-                        </Link>
+                    <div className='flex gap-4'>
+                        <div className="px-6 rounded-full bg-[#efb399] hover:bg-[#e3a286] flex items-center">
+                            <Link to='/userprofile'>
+                                Profile
+                            </Link>
+                        </div>
+                        <div className="px-6 rounded-full bg-[#efb399] hover:bg-[#e3a286] flex items-center">
+                            <Link to='/login'>
+                                Login
+                            </Link>
+                        </div>
                     </div>
                 </>
             }

@@ -50,7 +50,7 @@ export const blogsInfo = [
     },
     {
         title: 'How Research Is Advancing Our Understanding of OCD',
-        imageURL: 'https://www.nami.org/NAMI/media/NAMI-Media/BlogImageArchive/2023/Research_Blog.png',
+        imageURL: 'https://www.nami.org/wp-content/uploads/media/NAMI-Media/BlogImageArchive/2023/Research_Blog.png',
         date: 'October 20, 2023',
         link: 'https://www.nami.org/Blogs/NAMI-Blog/October-2023/How-Research-Is-Advancing-Our-Understanding-of-OCD',
         category: 'GENERAL & ANXIETY'

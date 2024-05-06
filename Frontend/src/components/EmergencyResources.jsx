@@ -95,9 +95,9 @@ const IndiaResources = [
 function EmergencyResources() {
     return (
         <div className="flex flex-col">
-            <div className="flex flex-col w-full h-80 justify-center items-center gap-4 flex-wrap bg-gradient-to-b from-[#6295c3] from-10% to-[#2fc8b6] to-90% text-white">
+            <div className="flex flex-col w-full h-80 justify-center items-center gap-4 flex-wrap bg-gradient-to-b from-[#6295c3] from-10% to-[#2fc8b6] to-90% text-white max-[864px]:h-56 ">
                 <h1 className="text-4xl font-extrabold">Get Help Now</h1>
-                <h2 className="text-lg">If you are in a crisis or any other person may be in danger the following resources can provide you with immediate help.</h2>
+                <h2 className="text-lg text-center">If you are in a crisis or any other person may be in danger the following resources can provide you with immediate help.</h2>
             </div>
             <div className="flex flex-col justify-center items-center">
                 <div className="py-10">
