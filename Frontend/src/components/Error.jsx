@@ -1,6 +1,7 @@
 import { useRouteError } from "react-router-dom"
 import Error404NotFound from "./Error404NotFound"
 import ErrorPic from '../assets/images/error.png'
+import { Link } from 'react-router-dom'
 
 const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

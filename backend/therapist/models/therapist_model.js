@@ -7,7 +7,7 @@ const therapistSchema = new mongoose.Schema({
   address:String,
   number:String,
   email:String,
-  ratings:Number
+  ratings:Number,
 });
 
 const Therapist = mongoose.model('Therapist', therapistSchema);

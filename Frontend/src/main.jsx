@@ -24,6 +24,7 @@ import ContactUs from './components/ContactUs.jsx'
 import AboutUs from './components/AboutUs.jsx'
 import SuggestTherapist from './components/SuggestTherapist.jsx'
 import ScheduleSession from './components/ScheduleSession.jsx'
+import UserProfile from './components/UserProfile.jsx'
 
 const appRouter = createBrowserRouter([
   {
@@ -140,6 +141,10 @@ const appRouter = createBrowserRouter([
       {
         path: '/contactus',
         element: <ContactUs />
+      },
+      {
+        path: '/userprofile',
+        element: <UserProfile />
       }
     ]
   },

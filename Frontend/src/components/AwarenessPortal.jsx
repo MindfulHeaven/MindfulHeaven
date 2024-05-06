@@ -1,6 +1,7 @@
 import Poster from '../assets/images/awareness-portal-poster.png'
 import { Link } from 'react-router-dom'
 import { blogsInfo } from '../utils/blogs'
+import deafultaImg  from '../assets/images/blogs_default.jpg'
 
 function AwarenessPortal() {
     return (
@@ -14,7 +15,7 @@ function AwarenessPortal() {
                         <Link to={blog?.link} target='_blank' className='group' key={index*index}>
                             <div className='m-4 flex flex-col bg-[#f5f7f5] rounded-lg w-64 h-[30rem] shadow-md'>
                                 <div className='overflow-hidden h-56 w-64 rounded-t-lg'>
-                                    <img src={blog?.imageURL} alt={blog?.title} className='h-56 w-64 group-hover:scale-110 transform transition duration-500' />
+                                    <img src={blog?.imageURL || deafultaImg} alt={blog?.title} className='h-56 w-64 group-hover:scale-110 transform transition duration-500' />
                                 </div>
                                 <div className='flex flex-col justify-around h-64 p-4'>
                                     <p className='text-resultGreen font-extrabold'>{blog?.category}</p>

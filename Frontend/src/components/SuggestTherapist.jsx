@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import TherapistImg from '../assets/images/therapist.jpg'
+import SuggestTherapistShimmer from './SuggestTherapistShimmer'
 
 function SuggestTherapist() {
     const { category } = useParams()
@@ -34,7 +35,8 @@ function SuggestTherapist() {
     return (
         <div>
             {therapists.length === 0 ?
-                <div>Searching for therapists...</div>
+                // <div>Searching for therapists...</div>
+                <SuggestTherapistShimmer />
                 :
                 <div className='flex flex-wrap m-4 gap4 justify-around'>
                     {therapists.map((therapist, index) => (

@@ -2,12 +2,21 @@ import { Doughnut } from 'react-chartjs-2'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 
 function StressResult({ }) {
     const { score } = useParams();
+    const chartRef = useRef(null);
+    useEffect(() => {
+        return () => {
+          if (chartRef.current) {
+            chartRef.current.destroy();
+          }
+        };
+     }, []);
     function getBackgroundColors(score) {
         let backgroundColors;
         switch (true) {
@@ -56,10 +65,11 @@ function StressResult({ }) {
 
     return (
         <>
-            <div className='flex flex-col items-center justify-start pt-10 w-full h-[80vh] bg-slate-200'>
-                <h1 className='text-2xl font-bold'>Your Assessment Result</h1>
-                <div className='w-80 h-80 bg-white my-4 rounded-lg p-4 shadow-md'>
+            <div className='flex flex-col items-center justify-start pt-10 w-full h-[80vh] bg-slate-200 max-[433px]:h-auto max-[900px]:h-auto'>
+                <h1 className='text-2xl font-bold max-[433px]:text-lg'>Your Assessment Result</h1>
+                <div className='w-80 h-80 bg-white my-4 rounded-lg p-4 shadow-md max-[433px]:w-50'>
                     <Doughnut
+                        ref={chartRef}
                         data={data}
                         width={'100rem'}
                         height={'100rem'}
@@ -74,7 +84,7 @@ function StressResult({ }) {
                         plugins={[guageText]}
                       />
                   </div>
-                  <div className='flex gap-4'>
+                  <div className='flex gap-4 max-[433px]:flex-col max-[630px]:flex-col'>
                       <div className='flex flex-col justify-center items-center rounded-lg p-2 bg-[#0ac72c]'>
                           <span>0-13</span>
                           <span>Low Stress</span>
@@ -88,14 +98,14 @@ function StressResult({ }) {
                         <span>High perceived stress</span>
                     </div>
                 </div>
-                <div className='flex gap-4 my-4 text-lg'>
-                    <div className='flex flex-col justify-center items-center shadow-md p-4 rounded-lg bg-slate-50'>
-                        <p>If you want professional help</p>
-                        <Link to='/therapy' className='bg-[#efb399] hover:bg-[#e3a286] p-2 rounded-2xl mt-2'>Get therapy now</Link>
+                <div className='flex gap-4 my-4 text-lg max-[433px]:flex-col max-[433px]:justify-center max-[433px]:items-center max-[630px]:flex-col'>
+                    <div className='flex flex-col justify-center items-center shadow-md p-4 rounded-lg bg-slate-50 max-[433px]:w-48'>
+                        <p className='max-[433px]:text-sm max-[630px]:text-sm'>If you want professional help</p>
+                        <Link to='/therapy' className='bg-[#efb399] hover:bg-[#e3a286] p-2 rounded-2xl mt-2 max-[433px]:text-sm max-[630px]:text-sm'>Get therapy now</Link>
                     </div>
-                    <div className='flex flex-col justify-center items-center shadow-md p-4 rounded-lg bg-slate-50'>
-                        <p>Or find videos or articles to calm yourself</p>
-                        <Link to='/awareness-portal' className='bg-[#efb399] hover:bg-[#e3a286] p-2 rounded-2xl mt-2'>Go to awareness portal</Link>
+                    <div className='flex flex-col justify-center items-center shadow-md p-4 rounded-lg bg-slate-50 max-[433px]:w-48'>
+                        <p className='max-[433px]:text-sm max-[630px]:text-sm'>Or find videos or articles to calm yourself</p>
+                        <Link to='/awareness-portal' className='bg-[#efb399] hover:bg-[#e3a286] p-2 rounded-2xl mt-2 max-[433px]:text-sm max-[630px]:text-sm'>Go to awareness portal</Link>
                     </div>
                 </div>
             </div>

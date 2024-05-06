@@ -8,18 +8,24 @@ const cors = require("cors")
 app.use(
     cors({
         origin: "http://localhost:5173",
+        // origin: "*",
         methods: ["GET", "POST"]
     })
 )
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const connection=mongoose.connect(process.env.THERAPIST_DB)
+mongoose.connect(process.env.THERAPIST_DB, {socketTimeoutMS: 30000}).then(()=>{console.log("Db connected")})
+// mongoose.connect(process.env.USER_DB, {socketTimeoutMS: 30000}).then(()=>{console.log("Db connected")})
+
+// require('../authentication/models/User')
+// require('../therapist/models/therapist_model')
+// require('../therapist/models/session_model')
 
 app.use(routes);
 app.listen(process.env.PORT);
 
 
-app.listen(3000, () => {
- console.log('Server is running on port 8000');
-});
+// app.listen(3000, () => {
+//  console.log('Server is running on port 8000');
+// });

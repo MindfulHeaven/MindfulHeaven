@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
+const Session = require('../../therapist/models/session_model')
 
 //Schema that is used to register or login a new customer
 const userSchema = new mongoose.Schema({
@@ -20,6 +21,18 @@ const userSchema = new mongoose.Schema({
     required: [true, "please enter password"],
     minlength: [6, "minimum length is 6"],
   },
+  depressionScores: {
+    type: [Number], // Array of numbers
+    default: [], // Default to an empty array
+  },
+  anxietyScores: {
+    type: [Number], // Array of numbers
+    default: [], // Default to an empty array
+  },
+  stressScores: {
+    type: [Number], // Array of numbers
+    default: [], // Default to an empty array
+  }
 });
 
 //fire a function to hash the password before being saved

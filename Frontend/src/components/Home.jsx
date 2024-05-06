@@ -1,11 +1,31 @@
 import HeadingHome from './HeadingHome'
 import SelfAssessmentHome from './SelfAssessmentHome'
 import TherapyHome from './TherapyHome'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 function Main() {
     const location = useLocation()
+    const [name, setName] = useState('')
+
+    useEffect(() => {
+        get_details()
+    }, [])
+
+    async function get_details(){
+        try{
+            const url = 'http://localhost:1818/getDetails/'+localStorage.getItem("token");
+            const response = await fetch(url, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            const responseData = await response.json()
+            setName(responseData.name)
+        }
+        catch(err){
+            console.error(err)
+        }
+    }
 
     useEffect(() => {
         if (location.hash === '#self-assessment') {
@@ -23,7 +43,7 @@ function Main() {
     }, [location])
     return (
         <div id='main' className='box-border'>
-            <HeadingHome />
+            <HeadingHome name={name}/>
             <SelfAssessmentHome />
             <TherapyHome />            
         </div>

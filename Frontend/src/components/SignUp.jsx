@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Picture from '../assets/images/login-signup.png'
 import { useNavigate } from 'react-router-dom'
+import swal from 'sweetalert'
 
 function SignUp() {
     const nevigate = useNavigate();
@@ -50,24 +51,38 @@ function SignUp() {
             })
             console.log(response)
             if(response.status === 201){
+                swal('You have registered to MindfulHeaven successfully.')
                 nevigate('/login')
             }
             else{
-                alert('Something went wrong try again!')
+                console.log('inside else');
+                console.log(response.json);
+                let errorMessage = await response.json();
+                swal({
+                    text: errorMessage.email,
+                    icon: 'warning',
+                    button: 'Try again!',
+                    dangerMode: true
+                })
             }
         }
         catch(error){
-            console.log(error)
-            alert('Something went wrong try again!')
+            console.log("Caught an error!");
+            swal({
+                text: error,
+                icon: 'warning',
+                button: 'Try again!',
+                dangerMode: true
+            })
         }
     }
 
     return (
-        <div id="login" className="flex box-border">
+        <div id="login" className="flex box-border max-[400px]:justify-center max-[400px]:items-center max-[400px]:h-[100vh]">
             <div className='flex justify-center items-center m-auto'>
-                <div className='flex flex-col justify-center border-2 h-[30rem] rounded-lg px-14 gap-8 shadow-md'>
+                <div className='flex flex-col justify-center border-2 h-[30rem] rounded-lg px-14 gap-8 shadow-md max-[690px]:w-[40vh]'>
                     <div className='self-center'>
-                        <h1 className='text-xl font-bold underline'>Sign up to get started</h1>
+                        <h1 className='text-xl font-bold underline max-[690px]:text-lg text-center'>Sign up to get started</h1>
                     </div>
                     <div className='flex flex-col'>
                         <input
@@ -75,7 +90,7 @@ function SignUp() {
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className='border-2 rounded-md px-4 py-1 w-60'
+                            className='border-2 rounded-md px-4 py-1 w-60 max-[690px]:w-32 max-[690px]:text-sm'
                             placeholder='Enter your name'
                             required
                         />
@@ -87,7 +102,7 @@ function SignUp() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className='border-2 rounded-md px-4 py-1 w-60'
+                            className='border-2 rounded-md px-4 py-1 w-60 max-[690px]:w-32 max-[690px]:text-sm'
                             placeholder='Enter your email'
                             required
                         />
@@ -99,7 +114,7 @@ function SignUp() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className='border-2 rounded-md px-4 py-1 w-60'
+                            className='border-2 rounded-md px-4 py-1 w-60 max-[690px]:w-32 max-[690px]:text-sm'
                             placeholder='Enter your password'
                             required
                         />
@@ -107,7 +122,7 @@ function SignUp() {
                     </div>
                     <div className='self-center'>
                         <button
-                            className='px-8 py-1 text-white rounded-lg bg-blue-400 hover:bg-blue-500'
+                            className='px-8 py-1 text-white rounded-lg bg-blue-400 hover:bg-blue-500 max-[690px]:text-sm'
                             onClick={onButtonClick}
                         >
                             Signup
@@ -118,9 +133,11 @@ function SignUp() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col justify-center items-center border-l-2 min-h-[100vh] min-w-[50vw]">
-                <img src={Picture} alt="picture" className='w-[32rem] drop-shadow-2xl' />
-                <h1 className='text-2xl font-bold font-markoOne mt-2'>@MinfulHeaven</h1>
+            <div className="flex flex-col justify-center items-center border-l-2 min-h-[100vh] min-w-[50vw] max-[690px]:min-w-[30vh] max-[400px]:hidden">
+                <img src={Picture} alt="picture" className='w-[32rem] drop-shadow-2xl max-[690px]:w-[30vh]' />
+                <p className='text-xl text-center max-[690px]:text-sm font-semibold font-markoOne'>Mindful living starts here</p>
+                <p className='text-xl text-center max-[690px]:text-sm font-semibold font-markoOne'>Create your MindfulHeaven account</p>
+                <h1 className='text-2xl text-center max-[690px]:text-sm font-bold font-markoOne mt-2'>@MinfulHeaven</h1>
             </div>
         </div>
     )

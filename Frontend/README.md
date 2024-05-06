@@ -5,6 +5,8 @@
     - ReactDOM
     - Tailwindcss
     - React-router-dom
+    - sweetalert
+    - ChartJS & react-chartjs-2
 
 ## Commands : 
     - `npm install` to install all the dependencies
