@@ -22,7 +22,7 @@ function ScheduleSession() {
 
     async function getTherapistDetails() {
         try {
-            const URL = 'http://localhost:8000/therapists/' + therapistId
+            const URL = import.meta.env.VITE_REACT_APP_BASE_URL_THERAPIST+"therapists/" + therapistId
             const response = await fetch(URL)
             const responseData = await response.json()
             setTherapist(responseData)
@@ -35,7 +35,7 @@ function ScheduleSession() {
 
     const fetch_therapist_sessions_details = async () => {
         try {
-            const url = 'http://localhost:8000/therapist-sessions/' + therapistId;
+            const url = import.meta.env.VITE_REACT_APP_BASE_URL_THERAPIST+"therapist-sessions/" + therapistId;
             const response = await fetch(url, {
                 method: 'GET'
             })
@@ -53,7 +53,7 @@ function ScheduleSession() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:8000/schedule-session`, {
+            const response = await fetch(import.meta.env.VITE_REACT_APP_BASE_URL_THERAPIST+"schedule-session", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ function ScheduleSession() {
 
     const sendConfirmationMail = async () => {
         try{
-            const response = await fetch(`http://localhost:8000/send-confirmation-mail`, {
+            const response = await fetch(import.meta.env.VITE_REACT_APP_BASE_URL_THERAPIST+"send-confirmation-mail", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -144,8 +144,8 @@ function ScheduleSession() {
                         {sessionDetails.map((session, index) => {
                             return (
                                 <div className='flex p-4 gap-4 justify-around border-y-2' key={index}>
-                                    <p>From : {dateFormatter(session?.startTime)}</p>
-                                    <p>To : {dateFormatter(session?.endTime)}</p>
+                                    <p>From : {new Date(session?.startTime).toLocaleString()}</p>
+                                    <p>To : {new Date(session?.endTime).toLocaleString()}</p>
                                 </div>
                             )
                         })}

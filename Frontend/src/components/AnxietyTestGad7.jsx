@@ -51,7 +51,7 @@ const QueForm = ({ formData, setFormData }) => {
 
 async function update_anxiety_score(result){
     try{
-        const response = await fetch(`http://localhost:1818/update_anxiety_score`, {
+        const response = await fetch(import.meta.env.VITE_REACT_APP_BASE_URL_AUTHENTICATION+"update_anxiety_score", {
             method: 'POST',
             credentials: 'include',
             headers: {

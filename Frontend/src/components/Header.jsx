@@ -15,7 +15,7 @@ function Header() {
     }, [isAuthenticated])
 
     const handleLogout = async () => {
-        await fetch(`http://localhost:1818/logout`, {
+        await fetch(import.meta.env.VITE_REACT_APP_BASE_URL_AUTHENTICATION+"logout", {
             method: 'POST',
             headers: {
                 "Content-Type": "application-json",

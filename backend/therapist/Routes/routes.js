@@ -37,7 +37,7 @@ router.post('/send-confirmation-mail', async (req, res) => {
                     <li><strong>Session Time:</strong> ${startTime} - ${endTime}</li>
                 </ul>
                 <p>You get message or call for joining information for therapy one hour before.</p>
-                <p>If you have any questions or need to cancel or reschedule your session, please contact us at <a href="mailto:info@mindfulheaven.com">info@mindfulheaven.com</a>.</p>
+                <p>If you have any questions or need to cancel or reschedule your session, please contact us at <a href="mailto:info@mindfulheaven.com">mindfulheaven3@gmail.com</a>.</p>
                 <p>Thank you for choosing MindfulHeaven for your wellness journey.</p>
                 <p>Warm regards,</p>
                 <p>The MindfulHeaven Team</p>

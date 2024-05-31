@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
-const Session = require('../../therapist/models/session_model')
+// const Session = require('../../therapist/models/session_model')
 
 //Schema that is used to register or login a new customer
 const userSchema = new mongoose.Schema({

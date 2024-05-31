@@ -14,7 +14,7 @@ function Main() {
 
     async function get_details(){
         try{
-            const url = 'http://localhost:1818/getDetails/'+localStorage.getItem("token");
+            const url = import.meta.env.VITE_REACT_APP_BASE_URL_AUTHENTICATION+"getDetails/"+localStorage.getItem("token");
             const response = await fetch(url, {
                 method: 'GET',
                 credentials: 'include'
