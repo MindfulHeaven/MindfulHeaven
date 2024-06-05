@@ -7,7 +7,8 @@ export default defineConfig({
   base: "/MindfulHeaven/",
   build: {
     rollupOptions: {
-      input: './src/components/Login.jsx', // Specify the entry point here
+      // input: './src/components/Login.jsx', // Specify the entry point here
+      input: './index.html', // Specify the entry point here
     },
   },
 })
