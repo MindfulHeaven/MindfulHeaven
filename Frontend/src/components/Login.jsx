@@ -45,7 +45,7 @@ function Login() {
 
     const login = async () => {
         try{
-            const response = await fetch(`http://localhost:1818/login`, {
+            const response = await fetch(import.meta.env.VITE_REACT_APP_BASE_URL_AUTHENTICATION+"login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -60,7 +60,7 @@ function UserProfile() {
 
     const fetch_user_details = async () => {
         try {
-            const url = 'http://localhost:1818/getDetails/' + localStorage.getItem("token");
+            const url = import.meta.env.VITE_REACT_APP_BASE_URL_AUTHENTICATION+"getDetails/" + localStorage.getItem("token");
             const response = await fetch(url, {
                 method: 'GET',
                 credentials: 'include'
@@ -75,7 +75,7 @@ function UserProfile() {
 
     const fetch_user_sessions_details = async () => {
         try {
-            const url = 'http://localhost:8000/user-sessions/' + localStorage.getItem("token");
+            const url = import.meta.env.VITE_REACT_APP_BASE_URL_THERAPIST+"user-sessions/" + localStorage.getItem("token");
             const response = await fetch(url, {
                 method: 'GET'
             })
@@ -89,6 +89,11 @@ function UserProfile() {
         catch (err) {
             console.error(err)
         }
+    }
+
+    const convertDateTime = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString()
     }
 
     const labels = [1, 2, 3, 4, 5, 6, 7];
@@ -141,8 +146,8 @@ function UserProfile() {
                             return (
                                 <div key={index} className='border-y-2 flex flex-col pl-4'>
                                     <p>Booked on : {userSessionBookingDetails[index]?.createdAt.split('T')[0]}</p>
-                                    <p>From : {session?.startTime}</p>
-                                    <p>To : {session?.endTime}</p>
+                                    <p>From : {new Date(session?.startTime).toLocaleString()}</p>
+                                    <p>To : {new Date(session?.endTime).toLocaleString()}</p>
                                 </div>
                             )
                         })}

@@ -4,14 +4,13 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 require('dotenv').config()
-// const URL = "mongodb+srv://Karan:karan%409809@cluster0.t4qkxgn.mongodb.net/"
 const cors = require("cors")
 
 
 //loading and using middlewares
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: process.env.FRONEND_URL || "http://localhost:5173",
         methods: ["GET", "POST"],
         credentials: true
     })

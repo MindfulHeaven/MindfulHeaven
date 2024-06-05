@@ -38,7 +38,7 @@ function SignUp() {
 
     const signup = async () => {
         try{
-            const response = await fetch(`http://localhost:1818/signup`, {
+            const response = await fetch(import.meta.env.VITE_REACT_APP_BASE_URL_AUTHENTICATION+"signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

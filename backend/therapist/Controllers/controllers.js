@@ -1,6 +1,5 @@
 const Therapist = require("../models/therapist_model");
 const Session = require("../models/session_model");
-const User = require("../../authentication/models/User")
 const SessionBooking = require('../models/session_booking')
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer')

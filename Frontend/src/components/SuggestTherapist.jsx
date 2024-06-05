@@ -14,7 +14,7 @@ function SuggestTherapist() {
     }, [])
 
     async function getTherapists() {
-        const response = await fetch(`http://localhost:8000/suggesttherapist`, {
+        const response = await fetch(import.meta.env.VITE_REACT_APP_BASE_URL_THERAPIST+"suggesttherapist", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
