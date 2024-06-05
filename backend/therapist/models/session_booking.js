@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('../../authentication/models/User')
+const User = require('./user')
 
 const sessionBookingSchema = new mongoose.Schema({
  user: {
