@@ -10,7 +10,7 @@ const cors = require("cors")
 //loading and using middlewares
 app.use(
     cors({
-        origin: process.env.FRONEND_URL || "http://localhost:3000",
+        origin: process.env.FRONEND_URL,
         methods: ["GET", "POST"],
         credentials: true
     })
