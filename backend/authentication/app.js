@@ -6,11 +6,13 @@ const cookieParser = require("cookie-parser");
 require('dotenv').config()
 const cors = require("cors")
 
+console.log(process.env.FRONEND_URL);
 
 //loading and using middlewares
 app.use(
     cors({
-        origin: process.env.FRONEND_URL,
+        origin: "https://mindfulheaven.vercel.app",
+        // origin: "*",
         methods: ["GET", "POST"],
         credentials: true
     })
